@@ -39,8 +39,8 @@ namespace Services
         }
         public async Task UpdatePersonaAsync(Persona persona)
         {
-            var personaEntity = await _personaRepository.GetPersonaByIdAsync(persona.Id);
-            await _personaRepository.UpdatePersonaAsync(personaEntity);
+            var pesonaEntidad = _mapper.Map<PersonaEntity>(persona);
+            await _personaRepository.UpdatePersonaAsync(pesonaEntidad);
         }
 
         public async Task SavePersonaAsync(Persona persona)

@@ -10,11 +10,11 @@ namespace Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonasController : ControllerBase
+    public class PersonaController : ControllerBase
     {
         private readonly IPersonaService _personaService;
 
-        public PersonasController(IPersonaService personaService)
+        public PersonaController(IPersonaService personaService)
         {
             _personaService = personaService;
         }
@@ -57,22 +57,11 @@ namespace Application.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Persona>> UpdatePersonaAsync([Required] int id,[FromBody] Persona persona)
         {
-            var personaExistente = await _personaService.GetPersonaByIdAsync(id);
+            persona.Id = id;
 
-            if (personaExistente is null)
-            {
-                return NotFound();
-            }
+            await _personaService.UpdatePersonaAsync(persona);
 
-            personaExistente.Nombre = persona.Nombre;
-            personaExistente.Apellido = persona.Apellido;
-            personaExistente.NroDocumento = persona.NroDocumento;
-            personaExistente.Correo = persona.Correo;
-            personaExistente.Telefono = persona.Telefono;
-
-            await _personaService.UpdatePersonaAsync(personaExistente);
-
-            return personaExistente;
+            return Ok();
 
         }
     }
