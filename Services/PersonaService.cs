@@ -27,8 +27,7 @@ namespace Services
         public async Task<Persona> GetPersonaByIdAsync(int id)
         {
             var personaEntity = await _personaRepository.GetPersonaByIdAsync(id);
-            var persona = _mapper.Map<Persona>(personaEntity);
-            return persona;
+            return _mapper.Map<Persona>(personaEntity); 
         }
 
         public async Task<IEnumerable<Persona>> GetPersonasAsync()
@@ -41,6 +40,7 @@ namespace Services
         {
             var pesonaEntidad = _mapper.Map<PersonaEntity>(persona);
             await _personaRepository.UpdatePersonaAsync(pesonaEntidad);
+
         }
 
         public async Task SavePersonaAsync(Persona persona)
@@ -49,6 +49,10 @@ namespace Services
             await _personaRepository.SavePersonaAsync(personaEntity);
         }
 
-        
+        public async Task<Persona> ObtenerPersonaPorTipoDocumentoYNumeroDocumento(Persona persona)
+        {
+            var personaEntity = await _personaRepository.BuscarPersonaPorTipoDocumentoYNumero(persona.TipoDocumentoIdentidadId,persona.NroDocumento);
+            return _mapper.Map<Persona>(personaEntity);
+        }
     }
 }

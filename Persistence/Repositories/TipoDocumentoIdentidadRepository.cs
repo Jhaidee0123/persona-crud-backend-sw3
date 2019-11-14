@@ -20,5 +20,6 @@ namespace Persistence.Repositories
         {
             return await _dbContext.TiposDocumentoIdentidad.ToListAsync();
         }
+
     }
 }

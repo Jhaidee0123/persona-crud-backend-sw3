@@ -11,5 +11,6 @@ namespace Services.Interfaces
         Task SavePersonaAsync(Persona persona);
         Task DeletePersonaByIdAsync(int id);
         Task UpdatePersonaAsync(Persona persona);
+        Task<Persona> ObtenerPersonaPorTipoDocumentoYNumeroDocumento(Persona persona);
     }
 }

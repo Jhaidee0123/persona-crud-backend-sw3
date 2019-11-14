@@ -58,11 +58,21 @@ namespace Application.Controllers
         public async Task<ActionResult<Persona>> UpdatePersonaAsync([Required] int id,[FromBody] Persona persona)
         {
             persona.Id = id;
-
             await _personaService.UpdatePersonaAsync(persona);
-
             return Ok();
-
         }
+
+        [HttpGet("personaid/{id}")]
+        public async Task<ActionResult<Persona>> GetPersonaById([Required] int id)
+        {
+            return await _personaService.GetPersonaByIdAsync(id);
+        } 
+
+        [HttpGet("buscar")]
+        public async Task<ActionResult<Persona>> ObtenerPersonaPorTipoDocumentoYNumeroDocumento([FromBody] Persona persona)
+        {
+            return await _personaService.ObtenerPersonaPorTipoDocumentoYNumeroDocumento(persona);
+        }
+
     }
 }

@@ -44,5 +44,11 @@ namespace Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<PersonaEntity> BuscarPersonaPorTipoDocumentoYNumero(int numeroDocId, string numeroDoc)
+        {
+            return await _dbContext.Personas.FirstOrDefaultAsync(persona => persona.NroDocumento == numeroDoc 
+            && persona.TipoDocumentoIdentidadId == numeroDocId);
+        }
+
     }
 }

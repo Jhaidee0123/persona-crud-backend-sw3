@@ -11,5 +11,6 @@ namespace Persistence.Repositories.Interfaces
         Task SavePersonaAsync(PersonaEntity persona);
         Task UpdatePersonaAsync(PersonaEntity persona);
         Task DeletePersonaByIdAsync(int id);
+        Task<PersonaEntity> BuscarPersonaPorTipoDocumentoYNumero(int numeroDocId, string numeroDoc);
     }
 }
